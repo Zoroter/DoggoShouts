@@ -7,7 +7,7 @@
   
 .chat {
     border: 1px solid lighten($color: #5c8a8a, $amount: 0);
-    background: lighten($color: #c2d6d6, $amount: 0);
+    background: lighten($color: #ffcce6, $amount: 0);
     height: 50vh;
     border-radius: 5px 5px 0 0;
     overflow-y: auto;
@@ -17,4 +17,25 @@
     border-top: 0 none;
     border-radius: 0 0 5px 5px;
 }
+
+.chat-message-container {
+    padding: 5px;
+  
+    .avatar {
+      margin: 5px;
+    }
+  
+    .message-content {
+      padding: 5px;
+      border: 1px solid #33001a;
+      border-radius: 5px;
+      background: lighten($color: #df9fdf, $amount: 0);
+      color: #732673;
+    }
+  
+    & + .chat-message-container {
+      margin-top: 10px;
+    }
+  }
+  
   
