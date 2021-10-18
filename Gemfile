@@ -21,7 +21,7 @@ gem 'simple_form'
 gem 'bootstrap'
 gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
-
+gem 'redis'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
