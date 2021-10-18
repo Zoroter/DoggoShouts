@@ -1,3 +1,35 @@
-<%  for i in 1..5 %>
-  <h1> elo cwelu ;) </h1>
-<% end %>
+<div class="row">
+        <div class="col">
+        <div class="alert alert-primary">
+            <h4 class="alert-heading">
+                Welcome to the DoggoShouts!
+            </h4>
+                <hr \>
+            <p>
+               Feel free to bark B)
+            </p>
+
+        </div>
+
+        <div class="col">
+            <div class="chat">
+                <% @messages.each do |message| %>
+                    <%= message %>
+            <% end %>
+        </div>
+
+        <%= simple_form_for @message, remote: true do |form| %>
+            <div class="input-group mb-3">
+                <%= form.input :message, as: :string,
+                                 wrapper: false,
+                                 label: false,
+                                 input_html: {
+                                   class: 'chat-input'
+                                 } %>
+                <div class="input-group-append">
+                    <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -10,10 +10,13 @@
   </head>
 
   <body>
-    <div class="container mt-3">
+    <div class="container">
       <div class="row">
-        <div class="col-12">
-          <%= yield %>
+        <div class="col-xl-12">
+          <%= render partial: 'layouts/navigation-bar' %>
+          <div class="my-3">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
