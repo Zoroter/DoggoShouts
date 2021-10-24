@@ -17,7 +17,7 @@ jobs:
           PGHOST: localhost
           PGUSER: wacek
           RAILS_ENV: test
-      - image: circleci/postgres:9.5
+      - image: circleci/postgres:12.0
         environment:
           POSTGRES_USER: wacek
           POSTGRES_DB: doggos
@@ -37,9 +37,10 @@ jobs:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
+      #Setup the database
       - run:
           name: Setup DB
-          command: bundle exec rails db:create db:schema:load --trace
+          command:  bundle exec rake db:setup
 
 
 # Invoke jobs via workflows
