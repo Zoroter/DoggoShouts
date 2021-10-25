@@ -27,9 +27,7 @@ jobs:
             source $BASH_ENV
             gem install bundler:2.1.4
 
-      - run:
-          command: gem install rubocop
-          
+
       - run:
           name: Bundle Install
           command: bundle check || bundle install
