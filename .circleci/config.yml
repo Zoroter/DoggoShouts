@@ -26,13 +26,15 @@ jobs:
             echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
             source $BASH_ENV
             gem install bundler:2.1.4
+
+      - run:
+          command: gem install rubocop
+          
       - run:
           name: Bundle Install
           command: bundle check || bundle install
 
-      - run:
-          command: gem install rubocop
-
+      
       - save_cache:
           key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
