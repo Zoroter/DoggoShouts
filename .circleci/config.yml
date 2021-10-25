@@ -1,9 +1,8 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/my-app
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: circleci/ruby:2.7.0-node-browsers
         environment:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
@@ -61,9 +60,3 @@ jobs:
       # Save artifacts
       - store_test_results:
           path: /tmp/test-results
-
-  workflows:
-    sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
-      jobs:
-        - build
