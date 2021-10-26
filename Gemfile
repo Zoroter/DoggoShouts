@@ -1,3 +1,38 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@TosterMocy 
+koksy-totalne
+/
+DoggoShouts
+Public
+1
+0
+0
+Code
+Issues
+Pull requests
+1
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+DoggoShouts/Gemfile /
+@TosterMocy
+TosterMocy Changes in Gemfile
+…
+Latest commit a1518c7 18 hours ago
+ History
+ 2 contributors
+@Zoroter@TosterMocy
+71 lines (61 sloc)  2.32 KB
+   
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -39,10 +74,15 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rubocop', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  #gem 'rubocop'
+  #gem 'rubocop-performance'
+  #gem 'rubocop-rails'
+  #gem 'rubocop-rspec' # or gem 'rubocop-minitest'
 end
 
 group :development do
@@ -64,3 +104,16 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
