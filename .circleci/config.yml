@@ -37,7 +37,9 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install
 
-      
+      - run:
+          command: gem install rubocop
+          
       - save_cache:
           key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
