@@ -1,38 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@TosterMocy 
-koksy-totalne
-/
-DoggoShouts
-Public
-1
-0
-0
-Code
-Issues
-Pull requests
-1
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-DoggoShouts/Gemfile /
-@TosterMocy
-TosterMocy Changes in Gemfile
-…
-Latest commit a1518c7 18 hours ago
- History
- 2 contributors
-@Zoroter@TosterMocy
-71 lines (61 sloc)  2.32 KB
-   
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -104,16 +69,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
