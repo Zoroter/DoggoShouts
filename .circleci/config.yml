@@ -62,6 +62,8 @@ jobs:
        #   name: Run rubocop in parallel
         #  command: bundle exec rubocop --parallel --config .rubocop.yml
 
+        # Run rspec in parallel
+      - ruby/rspec-test
       #- run:
        #   name: Run rspec in parallel
         #  command: |
