@@ -38,6 +38,7 @@ jobs:
           command: bundle check || bundle install
 
       - run:
+          name: rubocop install
           command: gem install rubocop
           
       - save_cache:
