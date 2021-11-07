@@ -19,8 +19,7 @@ jobs:
       - image: circleci/redis:3.2-alpine
     steps:
       - checkout
-      
-
+    
       # Install dependencies for Ruby Gems
       - restore_cache:
           keys:
@@ -38,7 +37,8 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
-
+      - run: 
+          command: postgres-rspec/install
       - run:
           name: rubocop install
           command: gem install rubocop
