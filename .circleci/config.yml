@@ -37,10 +37,6 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
-      - run: 
-          command: postgres-rspec/install
-      - run:
-          command: ruby/rspec-test
       - run:
           name: rubocop install
           command: gem install rubocop
@@ -98,12 +94,7 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
+    
       - run: 
           name: Run Tests
           command: bin/rails test test
