@@ -41,6 +41,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
+gem 'recaptcha'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

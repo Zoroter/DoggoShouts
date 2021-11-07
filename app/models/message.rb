@@ -5,5 +5,7 @@ class Message < ApplicationRecord
     super(options).merge(user_avatar_url: user.gravatar_url)
   end
   
+  validates :message, presence: true
+  
   
 end
