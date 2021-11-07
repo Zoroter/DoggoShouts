@@ -39,7 +39,8 @@ jobs:
           command: bundle check || bundle install
       - run: 
           command: postgres-rspec/install
-      - ruby/rspec-test
+      - run:
+          command: ruby/rspec-test
       - run:
           name: rubocop install
           command: gem install rubocop
