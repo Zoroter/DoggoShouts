@@ -271,11 +271,21 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :github, Rails.application.credentials.dig(:github, :github_client_id),
-  Rails.application.credentials.dig(:github, :github_client_secret), scope:'user,public_repo'
+  if Rails.env.development? || Rails.env.test?
+    config.omniauth :github, Rails.application.credentials.dig(:github, :github_client_id),
+    Rails.application.credentials.dig(:github, :github_client_secret), scope:'user,public_repo'
 
-  config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :google_client_id),
-  Rails.application.credentials.dig(:google, :google_client_secret), scope:'userinfo.email,userinfo.profile'
+    config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :google_client_id),
+    Rails.application.credentials.dig(:google, :google_client_secret), scope:'userinfo.email,userinfo.profile'
+  end
+
+  if Rails.env.production?
+    config.omniauth :github, Rails.application.credentials.dig(:github, :github_prod_client_id),
+    Rails.application.credentials.dig(:github, :github_prod_client_secret), scope:'user,public_repo'
+
+    config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :google_prod_client_id),
+    Rails.application.credentials.dig(:google, :google_prod_client_secret), scope:'userinfo.email,userinfo.profile'
+  end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
