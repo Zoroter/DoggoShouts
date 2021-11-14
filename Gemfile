@@ -21,6 +21,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
 gem 'redis'
+gem 'recaptcha', :require => 'recaptcha/rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -42,7 +43,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-gem 'recaptcha'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
