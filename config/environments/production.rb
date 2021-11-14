@@ -102,6 +102,5 @@ Rails.application.configure do
     user_name: "DoggoShouts@gmail.com",
     password: Rails.application.credentials.dig(:mail_password),
     authentication: 'plain',
-    enable_starttls_auto: true
   }
 end
