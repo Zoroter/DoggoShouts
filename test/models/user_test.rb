@@ -12,6 +12,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.save
   end
 
+  test "password longer than 128 signs isn't permited" do 
+    user = User.new(username: "example_name", email:"wacek@placek.com", password: "ffofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofofo")
+    assert_not user.save
+  end
+
   test "user with improper email can't be created" do
     user = User.new(username: "example_name", email:"wacek", password: "foooo")
     assert_not user.save
@@ -33,6 +38,18 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(username: "example_name1", email:"wacek@placek.com", password: "foooooooooooo")
     assert_not user.save
   end
+
+  test "can't create user with username longer than 32 signs" do
+    user = User.new(username: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", email:"wacek@placek.com", password: "foooooooo")
+    assert_not user.save
+  end
+
+  test "can't create user with email longer than 64 signs" do
+    user = User.new(username: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", email:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@pl.com", password: "foooooooo")
+    assert_not user.save
+  end
+
+  
 
 
 end

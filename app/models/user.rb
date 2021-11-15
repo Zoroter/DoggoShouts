@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:github, :google_oauth2]
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, length: {maximum: 32}
+  validates :email, length: {maximum: 64}
 
   has_many :messages, dependent: :destroy
 
