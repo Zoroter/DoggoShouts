@@ -19,8 +19,7 @@ jobs:
       - image: circleci/redis:3.2-alpine
     steps:
       - checkout
-      
-
+    
       # Install dependencies for Ruby Gems
       - restore_cache:
           keys:
@@ -38,7 +37,6 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
-
       - run:
           name: rubocop install
           command: gem install rubocop
@@ -73,3 +71,49 @@ jobs:
       # Save artifacts
       - store_test_results:
           path: /tmp/test-results
+          
+  test:
+    parallelism: 3
+    docker:
+      - image: circleci/ruby:2.7.0-node-browsers
+        environment:
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          DATABASE_URL: postgres://postgres:password@localhost:5432/tech_cast_test
+          RAILS_ENV: test
+          REDIS_URL: redis://127.0.0.1:6379
+      - image: circleci/postgres:11-alpine
+      - image: circleci/redis:3.2-alpine 
+       
+  
+      # A series of steps to run, some are similar to those in "build".
+    steps:
+      - checkout
+      # Here we make sure that the secondary container boots
+      # up before we run operations on the database.
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:create db:schema:load --trace
+    
+      - run: 
+          name: Run Tests
+          command: bin/rails test test
+          
+
+
+# We use workflows to orchestrate the jobs that we declared above.
+workflows:
+  version: 2
+  build_and_test:     # The name of our workflow is "build_and_test"
+    jobs:             # The list of jobs we run as part of this workflow.
+      - build         # Run build first.
+      - test:         # Then run test,
+          requires:   # Test requires that build passes for it to run.
+            - build   # Finally, run the build job.
