@@ -4,7 +4,8 @@ orbs:
   ruby: circleci/ruby@0.1.2
   rubocop: hanachin/rubocop@0.0.6
   postgres-rspec: sbc-orbs/postgres-rspec@0.0.28
-
+  snyk: snyk/snyk@1.1.2
+  
 jobs:
   build:
     docker:
@@ -106,7 +107,38 @@ jobs:
           name: Run Tests
           command: bin/rails test test
           
-
+  snyk:
+    docker:
+      - image: circleci/ruby:2.7.0-node-browsers
+        environment:
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          DATABASE_URL: postgres://postgres:password@localhost:5432/tech_cast_test
+          RAILS_ENV: test
+          REDIS_URL: redis://127.0.0.1:6379
+      - image: circleci/postgres:11-alpine
+      - image: circleci/redis:3.2-alpine
+      
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: install-snyk
+          command: 'sudo npm install -g snyk'     
+      - run: # run snyk help - test snyk is installed and working
+          name: snyk-help
+          command: snyk --help
+      - run: # run snyk auth - authenticate snyk use environment variables to add token
+          name: snyk auth
+          command: snyk auth 35b58f17-e242-4059-b706-ed73c4044e0d
+      - run: # run snyk test - run snyk test
+          name: snyk test
+          command: snyk test
+      - run:
+          name: snyk monitor
+          command: snyk monitor
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
@@ -117,3 +149,4 @@ workflows:
       - test:         # Then run test,
           requires:   # Test requires that build passes for it to run.
             - build   # Finally, run the build job.
+      - snyk
