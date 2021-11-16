@@ -135,7 +135,7 @@ jobs:
           command: snyk auth 35b58f17-e242-4059-b706-ed73c4044e0d
       - run: # run snyk test - run snyk test
           name: snyk test
-          command: snyk test --all-projects --fail-on=all|upgradable|patchable
+          command: snyk test --all-projects --fail-on=upgradable
       - run:
           name: snyk monitor
           command: snyk monitor --all-projects
