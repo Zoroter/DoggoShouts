@@ -11,4 +11,7 @@ fixture_user:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'passwoooord') %>
   id: 1
 
-
+no_username_user:
+  email: "waceeek1@plaacek.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'passwoooord') %>
+  id: 2
