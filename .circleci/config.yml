@@ -106,6 +106,12 @@ jobs:
       - run: 
           name: Run Tests
           command: bin/rails test test
+      
+      - store_artifacts:
+          path: coverage
+      - run:
+          name: Export
+          command: export CODACY_PROJECT_TOKEN=ebda272a204c41c8b567ad47dbea1c13
           
   snyk:
     docker:
