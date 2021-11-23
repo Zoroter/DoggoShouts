@@ -5,6 +5,7 @@ orbs:
   rubocop: hanachin/rubocop@0.0.6
   postgres-rspec: sbc-orbs/postgres-rspec@0.0.28
   snyk: snyk/snyk@1.1.2
+  coverage-reporter: codacy/coverage-reporter@13.5.3
   
 jobs:
   build:
@@ -110,8 +111,8 @@ jobs:
       - store_artifacts:
           path: coverage
       - run:
-          name: Export
-          command: export CODACY_PROJECT_TOKEN=ebda272a204c41c8b567ad47dbea1c13
+          name: Report Codacy
+          command: bash <(curl -Ls https://coverage.codacy.com/get.sh) report --project-token=ebda272a204c41c8b567ad47dbea1c13 -r coverage/coverage.xml
           
   snyk:
     docker:
